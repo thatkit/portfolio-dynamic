@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { RedisCacheController } from './redis-cache.controller';
+import { GithubApiController } from './github-api.controller';
 
-describe('RedisCacheController', () => {
-    let controller: RedisCacheController;
+describe('GithubApiController', () => {
+    let controller: GithubApiController;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            controllers: [RedisCacheController]
+            controllers: [GithubApiController]
         }).compile();
 
-        controller = module.get<RedisCacheController>(RedisCacheController);
+        controller = module.get<GithubApiController>(GithubApiController);
     });
 
     it('should be defined', () => {
