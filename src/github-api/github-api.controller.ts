@@ -3,10 +3,10 @@ import { GithubApiService } from './github-api.service';
 
 @Controller('github-api')
 export class GithubApiController {
-  constructor(private readonly githubApiService: GithubApiService) {}
+    constructor(private readonly githubApiService: GithubApiService) {}
 
-  @Get('topics')
-  getTopics(): string {
-    return this.githubApiService.getTopics();
-  }
+    @Get('topics')
+    getTopics(): string {
+        return this.githubApiService.getTopics();
+    }
 }

@@ -6,18 +6,18 @@ import { RedisCacheModule } from './redis-cache/redis-cache.module';
 import { GithubApiModule } from './github-api/github-api.module';
 
 @Module({
-  imports: [
-    ClientsModule.register([
-      {
-        name: 'REDIS_SERVICE',
-        transport: Transport.REDIS,
-        options: { url: 'redis://localhost:6379' },
-      },
-    ]),
-    // RedisCacheModule,
-    GithubApiModule,
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+    imports: [
+        ClientsModule.register([
+            {
+                name: 'REDIS_SERVICE',
+                transport: Transport.REDIS,
+                options: { url: 'redis://localhost:6379' }
+            }
+        ]),
+        // RedisCacheModule,
+        GithubApiModule
+    ],
+    controllers: [AppController],
+    providers: [AppService]
 })
 export class AppModule {}
