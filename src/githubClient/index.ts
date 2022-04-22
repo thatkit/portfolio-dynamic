@@ -1,40 +1,31 @@
 /* eslint-disable prettier/prettier */
-import { graphql } from '@octokit/graphql';
+import { graphql, GraphqlResponseError } from '@octokit/graphql';
 import { User } from './types';
+import 'dotenv/config';
+import { GET_USER_WITH_REPOS } from './queries';
+
+const graphqlWithAuth = graphql.defaults({
+  headers: {
+    authorization: `token ${process.env.GITHUB_PERSONAL_TOKEN}`
+  }
+});
 
 export class GithubClient {
   user: User;
+  error: string;
 
-  constructor() {}
-
-  async fetchUser() {
-    this.user = await graphql(
-      `
-        {
-          user(login: "thatkit") {
-            repositories(first: 100) {
-              nodes {
-                url
-                name
-                description
-                homepageUrl
-                repositoryTopics(first: 100) {
-                  nodes {
-                    topic {
-                      name
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      `
-    );
-  }
-
-  get getUser() {
-    return this.user;
+  async getUser () {
+    try {
+      this.user = await graphqlWithAuth(GET_USER_WITH_REPOS);
+      return this.user;
+    }
+    
+    catch(err) {
+      err instanceof GraphqlResponseError
+        ? this.error = err.errors[0].message
+        : this.error = err.name;
+      return this.error;
+    }
   }
 
 } 

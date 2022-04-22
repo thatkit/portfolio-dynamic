@@ -7,7 +7,7 @@ export class GithubApiController {
     constructor(private readonly githubApiService: GithubApiService) {}
 
     @Get('topics')
-    getTopics(): User {
-        return this.githubApiService.getTopics();
+    async getTopics(): Promise<User | string> {
+        return await this.githubApiService.getTopics();
     }
 }

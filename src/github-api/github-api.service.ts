@@ -6,9 +6,11 @@ import { User } from 'src/githubClient/types';
 export class GithubApiService {
     client = new GithubClient();
 
-    getTopics(): User {
-        console.log('Querying data from Github API...');
-        this.client.fetchUser();
-        return this.client.getUser;
+    async getTopics(): Promise<User | string> {
+        const response = await this.client.getUser();
+
+        if (!response) throw new Error('No data received');
+
+        return response;
     }
 }
