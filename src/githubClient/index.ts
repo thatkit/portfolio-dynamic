@@ -1,18 +1,23 @@
 /* eslint-disable prettier/prettier */
 import { graphql } from '@octokit/graphql';
-// import type { RepositoryConnection } from './schema.docs.graphql';
+import { User } from './types';
 
-class GithubClient {
-  userRepos;
+export class GithubClient {
+  user: User;
 
-  get getUser() {
-    this.userRepos = async () => await graphql(
+  constructor() {}
+
+  async fetchUser() {
+    this.user = await graphql(
       `
         {
           user(login: "thatkit") {
             repositories(first: 100) {
               nodes {
+                url
                 name
+                description
+                homepageUrl
                 repositoryTopics(first: 100) {
                   nodes {
                     topic {
@@ -26,7 +31,10 @@ class GithubClient {
         }
       `
     );
-    return this.userRepos;
+  }
+
+  get getUser() {
+    return this.user;
   }
 
 } 

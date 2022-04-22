@@ -1,10 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { GithubClient } from 'src/githubClient';
+import { User } from 'src/githubClient/types';
 
 @Injectable()
 export class GithubApiService {
-    getTopics(): string {
+    client = new GithubClient();
+
+    getTopics(): User {
         console.log('Querying data from Github API...');
-        //#  REQUEST FOR DATA FROM GITHUB
-        return 'Here are your topics';
+        this.client.fetchUser();
+        return this.client.getUser;
     }
 }
