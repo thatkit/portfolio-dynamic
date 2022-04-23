@@ -33,3 +33,12 @@ export class Topic {
 export type URI = any;
 
 type Nullable<T> = T | null;
+
+export class TransformedRepository {
+    id: string;
+    name: string;
+    description?: Nullable<string>;
+    url: URI;
+    homepageUrl?: Nullable<URI>;
+    repositoryTopics: string[];
+}

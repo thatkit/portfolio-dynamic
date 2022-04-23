@@ -1,13 +1,7 @@
-import {
-    CacheInterceptor,
-    Controller,
-    Get,
-    UseInterceptors
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { User } from 'src/githubClient/types';
 import { GithubApiService } from './github-api.service';
 
-@UseInterceptors(CacheInterceptor)
 @Controller('github-api')
 export class GithubApiController {
     constructor(private readonly githubClient: GithubApiService) {}
