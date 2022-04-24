@@ -1,5 +1,5 @@
 import { TagButtonProps } from '../App/types';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 export const TagButton = ({ topic }: TagButtonProps): JSX.Element => {
   return (

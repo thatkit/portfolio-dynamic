@@ -1,0 +1,53 @@
+.tagButton {
+    padding: 0.75rem 1.5rem;
+    border: 4px solid #000;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+
+    .shadow {
+        height: 0.1px;
+        width: 0.1px;
+        border-radius: 50%;
+        box-shadow: -6.5rem -0.5rem 0rem 0rem #FF5353;
+    }
+    
+    .text {
+        z-index: 1;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    &:hover {
+        animation: borderRepaint 300ms ease-in-out forwards;
+
+        .shadow {
+            animation: shadowMove 300ms ease-in-out forwards;
+        }
+    }
+}
+
+// Keyframes
+
+@keyframes borderRepaint {
+    // from {
+    //     border-color: #000;
+    // }
+
+    to {
+        border-color: #FF5353;
+    }
+}
+
+@keyframes shadowMove {
+    // from {
+    //     box-shadow: -6.5rem -0.5rem 0rem 0rem #FF5353;
+    // }
+
+    to {
+        box-shadow: -6.5rem -0.5rem 0rem 4rem #FF5353;
+    }
+}
