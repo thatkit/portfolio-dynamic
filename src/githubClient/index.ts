@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { graphql, GraphqlResponseError } from '@octokit/graphql';
-import { User } from './types';
+import { User } from '../github-api/types';
 import 'dotenv/config';
 import { GET_USER_WITH_REPOS } from './queries';
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { GithubClient } from 'src/githubClient';
-import { User } from 'src/githubClient/types';
+import { User } from 'src/github-api/types';
 
 @Injectable()
 export class GithubApiService {

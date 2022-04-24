@@ -6,24 +6,25 @@ import {
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { TransformedRepository } from './githubClient/types';
+import { TransformedRepository, TransformedResponse } from './github-api/types';
 
 @Injectable()
 export class TransformInteceptor implements NestInterceptor {
-    repositoryTopics: any;
+    repositoryTopics: any; // # any type
     intercept(
         context: ExecutionContext,
         next: CallHandler
-    ): Observable<TransformedRepository[]> {
+    ): Observable<TransformedResponse> {
         return next.handle().pipe(
-            map(data => {
-                return data.user.repositories.nodes.map(data => ({
-                    ...data,
-                    repositoryTopics: data.repositoryTopics.nodes.map(
+            map(data => ({
+                repos: data.user.repositories.nodes.map(repoInfo => ({
+                    ...repoInfo,
+                    repositoryTopics: repoInfo.repositoryTopics.nodes.map(
                         ({ topic }) => topic.name
                     )
-                }));
-            })
+                })),
+                topicsList: ['hello', 'and', 'bye']
+            }))
         );
     }
 }

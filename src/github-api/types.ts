@@ -42,3 +42,8 @@ export class TransformedRepository {
     homepageUrl?: Nullable<URI>;
     repositoryTopics: string[];
 }
+
+export class TransformedResponse {
+    repos: TransformedRepository[];
+    topicsList: string[];
+}
